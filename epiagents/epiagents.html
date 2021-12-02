@@ -1,0 +1,122 @@
+<!--
+     Example and test html for using EpiAgents code
+     Copyright (C) 2021  Nathan Geffen
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Affero General Public License as
+     published by the Free Software Foundation, either version 3 of the
+     License, or (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU Affero General Public License for more details.
+
+     You should have received a copy of the GNU Affero General Public License
+     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <title>Vaccine strategy comparison</title>
+        <link rel="stylesheet" href="epiagents.css">
+        <style>
+         body {
+             margin: auto;
+             font-size: 16px;
+         }
+         @media screen and (min-width: 992px) {
+             body {
+                 max-width: 992px;
+                 margin: auto;
+                 font-size: 16px;
+             }
+             h1 {
+                 text-align: center;
+             }
+             .epi-simulation {
+                 padding: 4px;
+                 border: 1px dashed #6495ED;
+                 border-radius: 5px;
+                 padding: 16px;
+                 margin: 24px auto 24px auto;
+             }
+         }
+        </style>
+
+    </head>
+    <body>
+        <h1>Comparison of vaccine strategies</h1>
+        <div id="vaccine-strategy-1" class="epi-simulation"></div>
+        <div id="vaccine-strategy-2" class="epi-simulation"></div>
+        <div id="vaccine-strategy-3" class="epi-simulation"></div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="epiagents.js"></script>
+        <script>
+         let div = document.getElementById("vaccine-strategy-1");
+         let sim_1 = EpiAgentsUI.create("vaccine-strategy-1", {
+             name: "Test model",
+             description: "Model used for testing EpiAgents",
+             numAgents: 1000,
+             interval: 10
+         });
+         sim_1.clear();
+
+         sim_1.setInitialRatios([
+             ["SUSCEPTIBLE", 990],
+             ["INFECTED_EXPOSED", 10]
+         ]);
+
+         sim_1.setInfectiousness("INFECTED_SYMPTOMATIC", 1.0);
+
+         sim_1.setTransitions([
+             ["INFECTED_EXPOSED", "INFECTED_SYMPTOMATIC", 1.0],
+             ["INFECTED_SYMPTOMATIC", "RECOVERED", 0.01],
+             ["RECOVERED", "SUSCEPTIBLE", 0.0]
+         ]);
+         sim_1.init();
+         let sim_2 = EpiAgentsUI.create("vaccine-strategy-2", {
+             name: "Test model 2",
+             description: "Model 2 used for testing EpiAgents",
+             numAgents: 500,
+             interval: 200,
+             movementRandomnessMean: 0.1,
+             elasticCollisions: false
+         });
+         sim_2.init();
+
+         let sim_3 = EpiAgentsUI.create("vaccine-strategy-3", {
+             name: "Test model 3",
+             description: "Model used for testing EpiAgents",
+             width: 400,
+             height: 400,
+             clusters: [
+                 {
+                     name: "A",
+                     left: 0,
+                     top: 0,
+                     right: 240,
+                     bottom: 240,
+                     border: true,
+                     borderColor: "yellow",
+                     numAgents: 10
+                 },
+                 {
+                     name: "B",
+                     left: 160,
+                     top: 160,
+                     right: 400,
+                     bottom: 400,
+                     border: true,
+                     borderColor: "red",
+                     numAgents: 20
+                 },
+             ]
+         });
+         sim_3.init();
+        </script>
+    </body>
+</html>

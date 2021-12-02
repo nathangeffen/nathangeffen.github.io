@@ -1,0 +1,232 @@
+/*
+
+  CSS for EpiAgents code.
+  Copyright (C) 2021  Nathan Geffen
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
+
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+
+
+.epi-simulation {
+    display: grid;
+}
+
+@media screen and (min-width: 992px) {
+    .epi-simulation {
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .epi-simulation {
+        grid-template-columns: 100%;
+    }
+    .epi-controls {
+        text-align: center;
+    }
+
+}
+
+
+.epi-game, .epi-chart-holder, .epi-parameter-box, .epi-results-box  {
+    margin: 6px;
+    padding: 12px;
+    border: 1px solid #f0eded;
+    border-radius: 3px;
+    position: relative;
+}
+
+.epi-game::before, .epi-chart-holder::before,
+.epi-parameter-box::before, .epi-results-box::before {
+    color: #5F9EA0;
+    padding-bottom: 8px;
+}
+
+.epi-game::before {
+    content: "Simulation";
+}
+
+.epi-game-status {
+    font-size: 80%;
+    overflow-y: scroll;
+    max-height: 36px;
+}
+
+.epi-chart-holder::before {
+    content: "Graph";
+}
+
+.epi-parameter-box::before {
+    content: "Parameters";
+}
+
+.epi-results-box::before {
+    content: "Results";
+}
+
+.epi-parameters h2 {
+    margin-bottom: 6px;
+}
+.epi-game-canvas {
+    padding: 0;
+    margin: 12px auto 12px auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: 1px solid black;
+}
+
+.epi-button {
+	background-color:#44c767;
+	border-radius: 3px;
+	border: 1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+        width: 80px;
+	font-family:Arial;
+	font-size: 16px;
+	font-weight:bold;
+	padding:12px;
+	text-decoration:none;
+	text-shadow:0px 1px 2px #2f6627;
+        margin: 3px;
+}
+
+.epi-button:hover {
+background-color:#5cbf2a;
+}
+
+.epi-button:disabled {
+	background-color:gray;
+}
+
+
+.epi-button:active {
+	position:relative;
+	top:1px;
+}
+
+.epi-results-box, .epi-parameter-box {
+    height: 250px;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: none;
+}
+
+.epi-results, .epi-parameters {
+    min-height: 100px;
+    height: 75%;
+    overflow: scroll;
+}
+
+.epi-entry {
+    display: grid;
+    grid-template-columns: 165px 45px 90px;
+    width: 100%;
+}
+
+.epi-results table {
+    margin-top: 6px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.epi-results thead {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.epi-results table, .epi-results th, .epi-results td {
+    border: 1px solid lightgray;
+}
+
+.epi-results td {
+    padding: 4px;
+}
+
+.epi-download-box, .epi-show-zeros  {
+    width: 95%;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    border-top: 1px solid lightgray;
+    position: absolute;
+    bottom: 0;
+}
+
+.epi-download {
+    margin-left: 6px;
+}
+
+.epi-model-name {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.epi-model-description {
+    margin-bottom: 6px;
+    text-transform: capitalize;
+}
+
+.epi-value {
+    font-size: 80%;
+    height: 14px;
+    margin-bottom: 6px;
+}
+
+.epi-slider {
+    margin-left: 12px;
+    width: 100px;
+    height: 14px;
+}
+
+
+.epi-hidden {
+    display: none;
+}
+
+.epi-min-max {
+    cursor: pointer;
+}
+
+.epi-min-max {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+}
+
+.epi-transition-table {
+    overflow: auto;
+    font-size: 80%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 900px;
+    margin-bottom: 24px;
+}
+
+.epi-transition-table td {
+    border: solid 1px black;
+}
+
+.epi-transition-editable {
+    text-align: center;
+}
+
+.epi-transition-na {
+    background-color: gray;
+}
